@@ -1,9 +1,9 @@
-import type { AxiosRequestConfig } from 'axios';
+import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-interface AxiosInterceptors {
+interface AxiosInterceptors<T = AxiosResponse> {
   requestInterceptor?: (config: AxiosRequestConfig) => AxiosRequestConfig;
   requestCatchInterceptor?: (error: any) => any;
-  responseInterceptor?: (config: any) => any;
+  responseInterceptor?: (config: T) => T;
   responseCatchInterceptor?: (error: any) => any;
 }
 
@@ -14,7 +14,8 @@ export interface LoginInfo {
   account: string;
 }
 
-export default interface CustomConfig extends AxiosRequestConfig {
-  interceptors?: AxiosInterceptors;
+export default interface CustomConfig<T = AxiosResponse>
+  extends AxiosRequestConfig {
+  interceptors?: AxiosInterceptors<T>;
   isLoading?: boolean;
 }

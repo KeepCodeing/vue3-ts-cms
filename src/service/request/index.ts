@@ -61,7 +61,7 @@ export default class AxiosRequest {
     );
   }
 
-  request<T>(config: CustomConfig): Promise<T> {
+  request<T>(config: CustomConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       // 某些请求不需要加载动画，因此需要修改config（为什么不在下面的config里修改？
       // 因为拦截器接受的是axios的类型，而不是我们自己定义的类型）
@@ -94,19 +94,19 @@ export default class AxiosRequest {
     });
   }
 
-  get<T>(config: CustomConfig): Promise<T> {
+  get<T>(config: CustomConfig<T>): Promise<T> {
     return this.request({ ...config, method: 'GET' });
   }
 
-  post<T>(config: CustomConfig): Promise<T> {
+  post<T>(config: CustomConfig<T>): Promise<T> {
     return this.request({ ...config, method: 'POST' });
   }
 
-  delete<T>(config: CustomConfig): Promise<T> {
+  delete<T>(config: CustomConfig<T>): Promise<T> {
     return this.request({ ...config, method: 'DELETE' });
   }
 
-  patch<T>(config: CustomConfig): Promise<T> {
+  patch<T>(config: CustomConfig<T>): Promise<T> {
     return this.request({ ...config, method: 'PATCH' });
   }
 }
