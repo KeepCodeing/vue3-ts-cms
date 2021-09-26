@@ -3,6 +3,11 @@
 </template>
 
 <style lang="less">
+* {
+  padding: 0;
+  margin: 0;
+}
+
 html,
 body,
 #app {
