@@ -16,4 +16,5 @@ export interface LoginInfo {
 
 export default interface CustomConfig extends AxiosRequestConfig {
   interceptors?: AxiosInterceptors;
+  isLoading?: boolean;
 }

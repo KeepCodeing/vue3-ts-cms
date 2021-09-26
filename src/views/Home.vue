@@ -27,6 +27,7 @@ export default defineComponent({
           username: '114514',
           password: '114514'
         },
+        isLoading: false,
         interceptors: {
           // 针对单个请求的拦截器何时调用？
           // 针对单个请求的拦截器似乎不是根据请求状态来了，就算请求404也算成功
