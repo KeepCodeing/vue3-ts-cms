@@ -1,17 +1,17 @@
 <template>
   <div class="login-panel">
-    <el-tabs type="border-card" stretch>
-      <el-tab-pane>
+    <el-tabs type="border-card" v-model="currentTab" stretch>
+      <el-tab-pane name="account">
         <template #label>
           <span><i class="el-icon-user-solid"></i>账号登陆</span>
         </template>
         <login-account ref="accountFormRef" />
       </el-tab-pane>
-      <el-tab-pane>
+      <el-tab-pane name="phone">
         <template #label>
           <span><i class="el-icon-phone"></i>手机登陆</span>
         </template>
-        <login-phone />
+        <login-phone ref="phoneFormRef" />
       </el-tab-pane>
     </el-tabs>
     <div class="login-action">
@@ -26,6 +26,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import loginAccount from './login-account.vue';
 import loginPhone from './login-phone.vue';
 
@@ -33,17 +34,26 @@ export default defineComponent({
   components: { loginAccount, loginPhone },
   setup() {
     const isRemember = ref(false);
+    const currentTab = ref<string>('account');
+
+    const router = useRouter();
 
     const accountFormRef = ref<InstanceType<typeof loginAccount>>();
+    const phoneFormRef = ref<InstanceType<typeof loginPhone>>();
 
     const handleLogin = () => {
-      accountFormRef.value?.loginAction();
+      if (currentTab.value === 'account') accountFormRef.value?.loginAction();
+      else phoneFormRef.value?.loginAction();
+
+      router.push('/home');
     };
 
     return {
       isRemember,
       handleLogin,
-      accountFormRef
+      accountFormRef,
+      currentTab,
+      phoneFormRef
     };
   }
 });

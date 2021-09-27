@@ -15,6 +15,8 @@
 import { ElForm } from 'element-plus';
 import { defineComponent, reactive, ref } from 'vue';
 import { rules } from '../config/account.config';
+import { useStore } from 'vuex';
+import { GET_LOGIN_INFO } from '@/store/login/types';
 
 export default defineComponent({
   setup() {
@@ -23,11 +25,15 @@ export default defineComponent({
       password: ''
     });
 
+    const store = useStore();
+
     const loginForm = ref<InstanceType<typeof ElForm>>();
 
     const loginAction = () => {
       loginForm.value?.validate((isValid) => {
-        console.log(isValid);
+        if (isValid) {
+          store.dispatch('login/' + GET_LOGIN_INFO, { ...accountForm });
+        }
       });
     };
 

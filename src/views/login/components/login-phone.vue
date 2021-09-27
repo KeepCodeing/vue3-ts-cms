@@ -17,6 +17,8 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue';
 import { rules } from '../config/phone.config';
+import { useStore } from 'vuex';
+import { GET_LOGIN_INFO } from '@/store/login/types';
 
 export default defineComponent({
   setup() {
@@ -25,9 +27,16 @@ export default defineComponent({
       code: ''
     });
 
+    const store = useStore();
+
+    const loginAction = () => {
+      store.dispatch(GET_LOGIN_INFO, { ...phoneForm });
+    };
+
     return {
       phoneForm,
-      rules
+      rules,
+      loginAction
     };
   }
 });
