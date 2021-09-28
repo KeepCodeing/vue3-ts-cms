@@ -45,7 +45,7 @@ export default defineComponent({
       if (currentTab.value === 'account') accountFormRef.value?.loginAction();
       else phoneFormRef.value?.loginAction();
 
-      router.push('/home');
+      router.push('/dashboard');
     };
 
     return {
