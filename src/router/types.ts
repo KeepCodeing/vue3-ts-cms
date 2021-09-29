@@ -21,7 +21,7 @@ export const Home: RouteRecordRaw = {
 };
 
 export const SystemMange: RouteRecordRaw = {
-  path: '/dashboard',
+  path: '/system',
   component: () => import('../components/layout/index.vue'),
   meta: {
     show: true,
@@ -31,7 +31,7 @@ export const SystemMange: RouteRecordRaw = {
   children: [
     {
       path: 'user',
-      component: () => import('../components/layout/index.vue'),
+      component: () => import('../views/system/user/index.vue'),
       meta: {
         show: true,
         title: '用户管理'
@@ -39,7 +39,7 @@ export const SystemMange: RouteRecordRaw = {
     },
     {
       path: 'department',
-      component: () => import('../components/layout/index.vue'),
+      component: () => import('../views/system/department.vue'),
       meta: {
         show: true,
         title: '部门管理'
@@ -47,7 +47,7 @@ export const SystemMange: RouteRecordRaw = {
     },
     {
       path: 'menu',
-      component: () => import('../components/layout/index.vue'),
+      component: () => import('../views/system/menu.vue'),
       meta: {
         show: true,
         title: '菜单管理'
@@ -55,7 +55,7 @@ export const SystemMange: RouteRecordRaw = {
     },
     {
       path: 'role',
-      component: () => import('../components/layout/index.vue'),
+      component: () => import('../views/system/role.vue'),
       meta: {
         show: true,
         title: '角色管理'
