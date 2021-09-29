@@ -1,22 +1,24 @@
 <template>
   <div class="flex items-center justify-center my-3 h-9">
-    <img class="mr-2 h-9" :src="'./favicon.ico'" />
+    <img class="mr-2 h-9" :src="'/favicon.ico'" />
     <span v-show="!isFold" class="font-sans font-thin text-white"
       >Cookie CMS</span
     >
   </div>
   <el-menu
-    default-active="1"
+    :default-active="$route.path"
     class="el-menu-vertical-demo"
     background-color="#001529"
     text-color="#999"
     active-text-color="#fff"
     :collapse="isFold"
     :collapse-transition="false"
+    :default-openeds="[$route.path]"
+    router
   >
     <template v-for="(route, idx) in menuRoutes" :key="idx">
       <el-menu-item
-        :index="idx + ''"
+        :index="route.path"
         v-if="!route.children || !route.children.length"
       >
         <i v-if="route.meta?.icon" :class="route.meta?.icon" />
@@ -32,7 +34,7 @@
           <el-menu-item
             v-for="(item, iidx) in route.children"
             :key="iidx"
-            :index="idx + '-' + iidx"
+            :index="route.path + '/' + item.path"
           >
             {{ item.meta?.title }}
           </el-menu-item>
