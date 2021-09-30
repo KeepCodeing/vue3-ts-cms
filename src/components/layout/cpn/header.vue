@@ -1,11 +1,14 @@
 <template>
   <div class="flex items-center justify-between h-full pr-5">
-    <div>
-      <i
-        @click="foldMenu"
-        class="text-2xl cursor-pointer"
-        :class="!isFold ? 'el-icon-s-fold' : 'el-icon-s-unfold'"
-      />
+    <div class="flex items-center">
+      <div>
+        <i
+          @click="foldMenu"
+          class="mr-5 text-2xl cursor-pointer"
+          :class="!isFold ? 'el-icon-s-fold' : 'el-icon-s-unfold'"
+        />
+      </div>
+      <div><header-bread-crumb /></div>
     </div>
     <div class="flex items-center">
       <el-avatar
@@ -31,8 +34,12 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import HeaderBreadCrumb from '../../breadcrumb/index';
 
 export default defineComponent({
+  components: {
+    HeaderBreadCrumb
+  },
   setup(props, { emit }) {
     const isFold = ref(false);
     const foldMenu = () => {
