@@ -30,6 +30,12 @@
         </el-col>
       </el-row>
     </el-form>
+    <div class="pr-5 text-right footer">
+      <slot name="footer">
+        <el-button>重置</el-button>
+        <el-button type="primary">查询</el-button>
+      </slot>
+    </div>
   </div>
 </template>
 
