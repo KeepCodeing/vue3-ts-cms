@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 import { IRootState } from './types';
 import LoginModule from './login/login';
+import SystemModel from './system/system';
 
 export default createStore<IRootState>({
   state: {
@@ -10,6 +11,7 @@ export default createStore<IRootState>({
   mutations: {},
   actions: {},
   modules: {
-    login: LoginModule
+    login: LoginModule,
+    system: SystemModel
   }
 });
