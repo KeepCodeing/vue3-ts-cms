@@ -1,6 +1,7 @@
-import { ITableProps } from './../../../../components/custom-table/types/index';
+import { ITableProps } from '@/components/custom-table/types/index';
+import { ITableConfig } from '@/components/custom-table';
 
-export const tableConfig: ITableProps[] = [
+const tableProps: ITableProps[] = [
   { label: '用户名', prop: 'nickname' },
   { label: '真实姓名', prop: 'realname' },
   { label: '手机号码', prop: 'phone' },
@@ -10,45 +11,9 @@ export const tableConfig: ITableProps[] = [
   { label: '操作', slotName: 'handle' }
 ];
 
-export const data: any[] = [
-  {
-    nickname: 'hwz',
-    realname: 'hwz',
-    phone: '1145141919',
-    status: 1,
-    createdAt: '2001.07.28',
-    updatedAt: '2021.09.30'
-  },
-  {
-    nickname: 'hwz',
-    realname: 'hwz',
-    phone: '1145141919',
-    status: 1,
-    createdAt: '2001.07.28',
-    updatedAt: '2021.09.30'
-  },
-  {
-    nickname: 'hwz',
-    realname: 'hwz',
-    phone: '1145141919',
-    status: 0,
-    createdAt: '2001.07.28',
-    updatedAt: '2021.09.30'
-  },
-  {
-    nickname: 'hwz',
-    realname: 'hwz',
-    phone: '1145141919',
-    status: 0,
-    createdAt: '2001.07.28',
-    updatedAt: '2021.09.30'
-  },
-  {
-    nickname: 'hwz',
-    realname: 'hwz',
-    phone: '1145141919',
-    status: 1,
-    createdAt: '2001.07.28',
-    updatedAt: '2021.09.30'
-  }
-];
+export const tableConfig: ITableConfig = {
+  title: '用户管理',
+  tableProps,
+  showIndexColumn: true,
+  showSelectionColumn: true
+};

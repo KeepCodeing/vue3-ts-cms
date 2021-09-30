@@ -39,7 +39,7 @@ export const SystemMange: RouteRecordRaw = {
     },
     {
       path: 'department',
-      component: () => import('../views/system/department/index.vue'),
+      component: () => import('../views/system/department.vue'),
       meta: {
         show: true,
         title: '部门管理'

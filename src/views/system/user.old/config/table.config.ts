@@ -1,7 +1,6 @@
-import { ITableProps } from '@/components/custom-table/types/index';
-import { ITableConfig } from '@/components/custom-table';
+import { ITableProps } from './../../../../components/custom-table/types/index';
 
-const tableProps: ITableProps[] = [
+export const tableConfig: ITableProps[] = [
   { label: '用户名', prop: 'nickname' },
   { label: '真实姓名', prop: 'realname' },
   { label: '手机号码', prop: 'phone' },
@@ -11,7 +10,7 @@ const tableProps: ITableProps[] = [
   { label: '操作', slotName: 'handle' }
 ];
 
-const data: any[] = [
+export const data: any[] = [
   {
     nickname: 'hwz',
     realname: 'hwz',
@@ -53,11 +52,3 @@ const data: any[] = [
     updatedAt: '2021.09.30'
   }
 ];
-
-export const tableConfig: ITableConfig = {
-  data,
-  title: '部门管理',
-  tableProps,
-  showIndexColumn: true,
-  showSelectionColumn: true
-};
