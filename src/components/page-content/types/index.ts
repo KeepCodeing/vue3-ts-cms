@@ -4,4 +4,6 @@ import { ITableConfig } from '@/components/custom-table';
 export interface IPageContentProps {
   formConfig?: IFormConfig;
   tableConfig?: ITableConfig;
+  modelName: string;
+  pageName: string;
 }

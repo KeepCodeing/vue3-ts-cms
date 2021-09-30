@@ -10,6 +10,6 @@ export interface ITableConfig {
   showIndexColumn?: boolean;
   showSelectionColumn?: boolean;
   tableProps: ITableProps[];
-  data: any[];
+  data?: any[];
   title?: string;
 }
