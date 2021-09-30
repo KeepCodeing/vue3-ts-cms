@@ -55,7 +55,7 @@ export const SystemMange: RouteRecordRaw = {
     },
     {
       path: 'role',
-      component: () => import('../views/system/role.vue'),
+      component: () => import('../views/system/role/index.vue'),
       meta: {
         show: true,
         title: '角色管理'

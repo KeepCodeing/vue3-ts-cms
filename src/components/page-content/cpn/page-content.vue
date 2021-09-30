@@ -29,7 +29,6 @@ import { useStore } from 'vuex';
 import { IPageContentProps } from '../types';
 import CustomForm from '../../custom-form';
 import CustomTable from '../../custom-table';
-import { GET_USER_LIST } from '@/store/system/types';
 
 export default defineComponent({
   components: {
@@ -52,7 +51,9 @@ export default defineComponent({
   },
   setup(props) {
     const store = useStore();
-    store.dispatch(`${props.pageContentConfig.modelName}/${GET_USER_LIST}`);
+    store.dispatch(
+      `${props.pageContentConfig.modelName}/get${props.pageContentConfig.pageName}List`
+    );
     const dataList = computed(() =>
       store.getters[`${props.pageContentConfig.modelName}/getDataList`](
         props.pageContentConfig.pageName
