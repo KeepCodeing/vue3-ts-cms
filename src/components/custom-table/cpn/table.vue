@@ -22,12 +22,9 @@
         show-overflow-tooltip
       >
         <template #default="scope">
-          <slot
-            v-if="item.prop"
-            :name="item.slotName"
-            :row="scope.row[item.prop]"
-            >{{ scope.row[item.prop] }}</slot
-          >
+          <slot :name="item.slotName" :row="scope.row[item.prop]">{{
+            scope.row[item.prop]
+          }}</slot>
         </template>
       </el-table-column>
     </el-table>

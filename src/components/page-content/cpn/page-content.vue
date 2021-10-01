@@ -1,7 +1,11 @@
 <template>
   <div>
-    <custom-form v-bind="pageContentConfig.formConfig" />
+    <custom-form
+      v-if="pageContentConfig.formConfig"
+      v-bind="pageContentConfig.formConfig"
+    />
     <custom-table
+      v-if="pageContentConfig.tableConfig"
       :data="dataList"
       class="mt-5"
       v-bind="pageContentConfig.tableConfig"
