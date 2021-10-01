@@ -47,7 +47,7 @@ export const SystemMange: RouteRecordRaw = {
     },
     {
       path: 'menu',
-      component: () => import('../views/system/menu.vue'),
+      component: () => import('../views/system/menu/index.vue'),
       meta: {
         show: true,
         title: '菜单管理'

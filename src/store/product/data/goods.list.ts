@@ -1,4 +1,3 @@
-import { def } from '@vue/shared';
 import { IGoods } from '../types';
 
 const goodsList: IGoods[] = [
