@@ -19,11 +19,15 @@
         :key="item"
         v-bind="item"
         align="center"
+        show-overflow-tooltip
       >
         <template #default="scope">
-          <slot :name="item.slotName" :row="scope.row[item.prop]">{{
-            scope.row[item.prop]
-          }}</slot>
+          <slot
+            v-if="item.prop"
+            :name="item.slotName"
+            :row="scope.row[item.prop]"
+            >{{ scope.row[item.prop] }}</slot
+          >
         </template>
       </el-table-column>
     </el-table>
@@ -34,8 +38,6 @@
           :page-size="100"
           layout="total, sizes, prev, pager, next, jumper"
           :total="400"
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
         >
         </el-pagination>
       </slot>

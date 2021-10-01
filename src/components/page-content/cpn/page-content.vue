@@ -10,14 +10,16 @@
       <template #headerHandler>
         <slot name="pageHeaderHandler"></slot>
       </template>
-      <!-- <template #status="scope">
-        <span type="primary">{{ scope.row === 1 ? '启用' : '禁用' }}</span>
-      </template> -->
-      <template #handle>
-        <slot name="pageHandle"></slot>
-      </template>
       <template #footer>
         <slot name="pageFooter"></slot>
+      </template>
+      <!-- 渲染自定义插槽 -->
+      <template
+        v-for="item in slotList"
+        :key="item.prop"
+        #[item.slotName]="scope"
+      >
+        <slot :name="`p-${item.slotName}`" :row="scope.row"></slot>
       </template>
     </custom-table>
   </div>
@@ -40,14 +42,6 @@ export default defineComponent({
       type: Object as PropType<IPageContentProps>,
       required: true
     }
-    // pageName: {
-    //   type: String,
-    //   required: true
-    // },
-    // modelName: {
-    //   type: String,
-    //   required: true
-    // }
   },
   setup(props) {
     const store = useStore();
@@ -59,8 +53,17 @@ export default defineComponent({
         props.pageContentConfig.pageName
       )
     );
+    // 针对这里写死的插槽进行过滤
+    const slotList =
+      props.pageContentConfig.tableConfig?.tableProps.filter(
+        (item) =>
+          item.slotName !== 'pageHeaderHandler' &&
+          item.slotName !== 'pageFooter' &&
+          item.slotName
+      ) ?? [];
     return {
-      dataList
+      dataList,
+      slotList
     };
   }
 });
