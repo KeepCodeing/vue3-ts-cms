@@ -5,10 +5,17 @@
         <el-col v-bind="colLayout" v-for="fprop in formProps" :key="fprop">
           <el-form-item class="w-full" :label="fprop.label" :style="itemStyle">
             <template v-if="fprop.type === 'input'">
-              <el-input :placeholder="fprop.placeholder"></el-input>
+              <el-input
+                v-model="formData[fprop.filed]"
+                :placeholder="fprop.placeholder"
+              ></el-input>
             </template>
             <template v-else-if="fprop.type === 'select' && fprop.options">
-              <el-select class="w-full" :placeholder="fprop.placeholder">
+              <el-select
+                v-model="formData[fprop.filed]"
+                class="w-full"
+                :placeholder="fprop.placeholder"
+              >
                 <el-option
                   v-for="item in fprop.options"
                   :key="item"
@@ -24,6 +31,7 @@
                 style="width: 100%"
                 v-bind="fprop.others"
                 type="daterange"
+                v-model="formData[fprop.filed]"
               ></el-date-picker>
             </template>
           </el-form-item>
@@ -32,7 +40,7 @@
     </el-form>
     <div class="pr-5 text-right footer">
       <slot name="footer">
-        <el-button>重置</el-button>
+        <el-button @click="resetFormData">重置</el-button>
         <el-button type="primary">查询</el-button>
       </slot>
     </div>
@@ -40,15 +48,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, PropType, reactive } from 'vue';
 import { IFormProp } from '../types';
 
 export default defineComponent({
   props: {
     formProps: {
-      type: Object as PropType<IFormProp>,
+      type: Array as PropType<IFormProp[]>,
       required: true,
-      default: () => ({})
+      default: () => []
     },
     itemStyle: {
       type: Object,
@@ -69,8 +77,21 @@ export default defineComponent({
       default: '100px'
     }
   },
-  setup() {
-    return {};
+  setup(props) {
+    const formData: any = reactive({});
+    for (const item of props.formProps) {
+      formData[item.filed] = '';
+    }
+    // console.log(formData);
+    const resetFormData = () => {
+      for (const item of props.formProps) {
+        formData[item.filed] = '';
+      }
+    };
+    return {
+      formData,
+      resetFormData
+    };
   }
 });
 </script>

@@ -12,6 +12,7 @@ export interface IFormProp {
   label: string;
   placeholder?: string;
   rules?: any[];
+  filed: string;
 
   type?: IFormType;
   options?: any[];
