@@ -63,3 +63,23 @@ export const SystemMange: RouteRecordRaw = {
     }
   ]
 };
+
+export const Product: RouteRecordRaw = {
+  path: '/product',
+  component: () => import('../components/layout/index.vue'),
+  meta: {
+    show: true,
+    title: '商品中心',
+    icon: 'el-icon-monitor'
+  },
+  children: [
+    {
+      path: 'goods',
+      component: () => import('../views/product/product-info/index.vue'),
+      meta: {
+        show: true,
+        title: '商品信息'
+      }
+    }
+  ]
+};

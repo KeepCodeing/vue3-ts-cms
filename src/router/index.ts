@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import { Home, SystemMange } from './types';
+import { Home, Product, SystemMange } from './types';
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -17,7 +17,8 @@ export const routes: Array<RouteRecordRaw> = [
     }
   },
   Home,
-  SystemMange
+  SystemMange,
+  Product
 ];
 
 const router = createRouter({
