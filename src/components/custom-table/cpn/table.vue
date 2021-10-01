@@ -4,7 +4,12 @@
       <h2 class="font-sans text-xl font-bold">{{ title }}</h2>
       <slot name="headerHandler"></slot>
     </div>
-    <el-table border :data="data" @selection-change="handleSelectionChange">
+    <el-table
+      v-bind="childrenProp"
+      border
+      :data="data"
+      @selection-change="handleSelectionChange"
+    >
       <el-table-column type="selection" width="60px" v-if="showSelectionColumn">
       </el-table-column>
       <el-table-column
@@ -28,13 +33,15 @@
         </template>
       </el-table-column>
     </el-table>
-    <div class="flex justify-end mt-4 footer">
+    <div class="flex justify-end mt-4 footer" v-if="showPagination">
       <slot name="footer">
         <el-pagination
           :page-sizes="[100, 200, 300, 400]"
           :page-size="100"
           layout="total, sizes, prev, pager, next, jumper"
           :total="400"
+          @current-change="onCurrentChange"
+          @size-change="onSizeChange"
         >
         </el-pagination>
       </slot>
@@ -44,7 +51,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { ITableProps } from '../types';
+import { ITableChildren, ITableProps } from '../types';
 
 export default defineComponent({
   props: {
@@ -64,9 +71,16 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    showPagination: {
+      type: Boolean,
+      default: true
+    },
     title: {
       type: String,
       default: ''
+    },
+    childrenProp: {
+      type: Object as PropType<ITableChildren>
     }
   },
   setup() {
